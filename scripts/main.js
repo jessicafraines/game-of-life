@@ -16,25 +16,23 @@ function addItemToRow($table, item){
 }
 function addItemToColumn($table, item){
   var $td = document.createElement("td");
-  $td.innerHTML = item;
+  $td.innerHTML = '';
   $table.appendChild($td);
   if(item === 0){
-    $td.style.background= "black";
+    $td.style.background= "#cd5c5c";
   }else{
-    $td.style.background= "red";
+    $td.style.background= "#008b8b";
   }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
   var $table = document.getElementById("table");
-  var matrix = matrixCreator(3,3);
+  var matrix = matrixCreator(30,30);
 
-    for(var i = 0; i < matrix.length; i++){
-      addItemToRow($table, matrix[i]);
- 
-      for(var j = 0; j < matrix[i].length; j++){
-        addItemToColumn($table, matrix[i][j]);
-
-      }
-    }
-});
+  matrix.forEach(function(tr){
+    addItemToRow($table, tr);
+    tr.forEach(function(td){
+      addItemToColumn($table, td);
+    });
+  }); 
+}); //closing for DOMContentLoaded
