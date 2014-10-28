@@ -18,6 +18,11 @@ function addItemToColumn($table, item){
   var $td = document.createElement("td");
   $td.innerHTML = item;
   $table.appendChild($td);
+  if(item === 0){
+    $td.style.background= "black";
+  }else{
+    $td.style.background= "red";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -28,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function(){
       addItemToRow($table, matrix[i]);
  
       for(var j = 0; j < matrix[i].length; j++){
-        addItemToColumn($table, matrix[i][j]); 
+        addItemToColumn($table, matrix[i][j]);
+
       }
     }
 });
