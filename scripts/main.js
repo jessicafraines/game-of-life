@@ -9,32 +9,35 @@ function matrixCreator(tr, td){
   return matrix;
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+$(document).ready(function(){//jquery
   var matrix = matrixCreator(30,30);
   generateGrid(matrix);
 
   function generateGrid(matrix){
-    var $table = document.getElementById('table');
-    $table.innerHTML = '';
-    matrix.forEach(function(tr){
-      var $tr = document.createElement('tr');
-      tr.forEach(function(td){
-        var $td = createTableCell(td);
-        $tr.appendChild($td);
-      });
-      $table.appendChild($tr);
+   // var $table = $('#table');
+    // $table.innerHTML = '';
+    $('#table').html('');//REPLACED LINE 18
+    matrix.forEach(function(row){
+    //  var $tr = document.createElement('tr');
+      var $tr = $('<tr></tr>')//REPLACED LINE 21;
+        row.forEach(function(cell){
+          $td = createTableCell(cell);
+          $tr.append($td);//jquery
+        });
+        $('#table').append($tr); //jquery
     });
   }
   function createTableCell(item){
-    var $td = document.createElement('td');
+    //var $td = document.createElement('td');
+    var $td = $('<td></td>')
+        
     if(item === 1){
-      $td.classList.add('alive');
+      $td.addClass('alive');
     }else{
-      $td.classList.add('dead');
+      $td.addClass('dead');
     }
     return $td;
   }
-
   function livingNeighborCount(x, y){
     var neighborsArray = neighbors(x, y);
     var count = 0;
